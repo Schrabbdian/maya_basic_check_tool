@@ -2,7 +2,7 @@ from pymel.core import *
 import pymel.core.nodetypes as nt
 
 
-def findNonManifoldObjects():
+def findNonManifoldObjects(select_objects=True):
     geometry_list = ls(geometry=True)  # get a list of all geometry nodes in the scene
     nm_list = []
 
@@ -12,23 +12,43 @@ def findNonManifoldObjects():
 
         # only keep those that have non-manifold geometry
         if nm_geom:
-            nm_list.append(mesh)
+            if select_objects:
+                nm_list.append(mesh)  # select the mesh object
+            else:
+                nm_list.extend(nm_geom)  # select the actual geometry
 
     select(nm_list)  # select the resulting list
 
     return nm_list
 
 
-def findDefaultShaded():
+def findDefaultShaded(select_objects=True):
 
     # select all faces that have the initial shader group assigned
     hyperShade(objects='initialShadingGroup')
-    res = selected()
+    result = selected()
 
-    return res
+    # if parameter set, only return the objects
+    if select_objects:
+
+        object_list = []
+
+        # Only add DagNodes
+        for sel in result:
+            if isinstance(sel, nt.DagNode) and sel not in object_list:
+                object_list.append(sel)
+            # for Components, add the Node they are connected to
+            elif isinstance(sel, Component) and sel.node() not in object_list:
+                object_list.append(sel.node())
+
+        result = object_list
+
+    select(result)
+    return result
 
 
 def findNameDuplicates(use_selection=False):
+    # Look for Objects with the same name as the selection
     if use_selection:
         sel = selected()
         if sel:
@@ -42,6 +62,7 @@ def findNameDuplicates(use_selection=False):
             select(same_name_list)
             return same_name_list
 
+    # Look for objects whose names occur more than once
     else:
         node_list = ls(type=nt.DagNode)  # get a list of all DAG nodes
 

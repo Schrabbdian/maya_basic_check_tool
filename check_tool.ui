@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>BasicCheckTool</class>
- <widget class="QDialog" name="BasicCheckTool">
+ <class>CheckTool</class>
+ <widget class="QWidget" name="CheckTool">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>241</width>
-    <height>226</height>
+    <width>320</width>
+    <height>238</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -20,8 +20,14 @@
       <widget class="QToolBox" name="toolBox">
        <property name="minimumSize">
         <size>
-         <width>221</width>
+         <width>300</width>
          <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>500</width>
+         <height>250</height>
         </size>
        </property>
        <property name="currentIndex">
@@ -32,7 +38,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>221</width>
+          <width>300</width>
           <height>69</height>
          </rect>
         </property>
@@ -41,21 +47,53 @@
         </attribute>
         <layout class="QGridLayout" name="gridLayout_5">
          <item row="0" column="0">
-          <layout class="QVBoxLayout" name="verticalLayout_5"/>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <item>
+            <widget class="QCheckBox" name="checkBox_selectGeom">
+             <property name="text">
+              <string>Select non-manifold vertices and edges</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
         </layout>
        </widget>
        <widget class="QWidget" name="page_dm">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>300</width>
+          <height>69</height>
+         </rect>
+        </property>
         <attribute name="label">
          <string>Objects using Default Material</string>
         </attribute>
         <layout class="QGridLayout" name="gridLayout_4">
          <item row="0" column="0">
-          <layout class="QVBoxLayout" name="verticalLayout_4"/>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <widget class="QCheckBox" name="checkBox_selectFaces">
+             <property name="text">
+              <string>Select individual faces for multi-material objects</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
         </layout>
        </widget>
        <widget class="QWidget" name="page_sn">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>300</width>
+          <height>69</height>
+         </rect>
+        </property>
         <attribute name="label">
          <string>Objects with the same name</string>
         </attribute>
@@ -68,7 +106,7 @@
               <string>... as the selection</string>
              </property>
              <property name="checked">
-              <bool>true</bool>
+              <bool>false</bool>
              </property>
             </widget>
            </item>
@@ -76,6 +114,9 @@
             <widget class="QRadioButton" name="rb_sn_noselection">
              <property name="text">
               <string>... as another object in the scene</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -88,7 +129,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>221</width>
+          <width>300</width>
           <height>69</height>
          </rect>
         </property>
@@ -125,11 +166,37 @@
       </widget>
      </item>
      <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
       <widget class="QPushButton" name="findButton">
        <property name="text">
         <string>Find them!</string>
        </property>
       </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
      </item>
     </layout>
    </item>

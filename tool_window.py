@@ -13,40 +13,38 @@ from shiboken2 import wrapInstance
 import maya.OpenMayaUI as omui
 from functools import partial
 
+from maya.app.general.mayaMixin import MayaQWidgetDockableMixin
+
 import pymel.core.uitypes as uit
 
 
-class BasicCheckToolUI:
+class BasicCheckToolUI(MayaQWidgetDockableMixin, QDialog):
 
-    def __init__(self):
+    def __init__(self, parent=None):
+        super(BasicCheckToolUI, self).__init__(parent=parent)
 
-        self.__load_ui_file()
+        self.main_layout = QVBoxLayout(self)
+        self.__load_ui_file(self.main_layout)
         self.findButton.clicked.connect(self.on_find_button_clicked)
 
         self.shelf_buttons = {}
         self.__setup_shelf()
 
-        self.tool_window.show()
+        print "stuff man"
 
-    @staticmethod
-    def get_main_window():
-        main_window_pointer = omui.MQtUtil.mainWindow()
-        return wrapInstance(long(main_window_pointer), QWidget)
-
-    def __load_ui_file(self):
+    def __load_ui_file(self, main_layout):
         loader = QUiLoader()
-        ui_file = QFile("F:/Development/Maya/Playerium_tests/basic_check_tool/testqt.ui")
+        ui_file = QFile("F:/Development/Maya/Playerium_tests/basic_check_tool/check_tool.ui")
         ui_file.open(QFile.ReadOnly)
-        ui = loader.load(ui_file, parentWidget=self.get_main_window())
+        ui = loader.load(ui_file, parentWidget=self)
         ui_file.close()
 
         # save references to important UI elements
-        assert isinstance(ui, QDialog)
-        self.tool_window = ui
-        assert isinstance(ui.toolBox, QToolBox)
         self.toolBox = ui.toolBox
-        assert isinstance(ui.findButton, QPushButton)
         self.findButton = ui.findButton
+
+        main_layout.addWidget(ui)
+
 
     def __setup_shelf(self, name="Basic Checks"):
 
@@ -77,38 +75,49 @@ class BasicCheckToolUI:
 
     def __show_tool_window(self, tool_idx=0):
         self.toolBox.setCurrentIndex(tool_idx)
-        self.tool_window.show()
-
+        self.show(dockable=True)
 
     def on_find_button_clicked(self):
         idx = self.toolBox.currentIndex()
 
         # Find non-manifold
         if idx == 0:
-            findNonManifoldObjects()
+            check = self.findChild(QCheckBox, "checkBox_selectGeom")
+            s = check.checkState() is Qt.Unchecked
+
+            findNonManifoldObjects(select_objects=s)
             return
         # Find default material
         if idx == 1:
-            findDefaultShaded()
+            check = self.findChild(QCheckBox, "checkBox_selectFaces")
+            s = check.checkState() is Qt.Unchecked
+
+            findDefaultShaded(select_objects=s)
             return
         # Find same name
         if idx == 2:
-            assert isinstance(self.tool_window.rb_sn_selection, QRadioButton)
-            rb = self.tool_window.rb_sn_selection
+            rb = self.findChild(QRadioButton, "rb_sn_selection")
 
             findNameDuplicates(use_selection=rb.isChecked())
             return
         # Find empty groups
         if idx == 3:
-            assert isinstance(self.tool_window.checkBox_casc, QCheckBox)
-            check = self.tool_window.checkBox_casc
+            check = self.findChild(QCheckBox, "checkBox_casc")
             casc = check.checkState() is Qt.Checked
 
-            assert isinstance(self.tool_window.checkBox_rm, QCheckBox)
-            check = self.tool_window.checkBox_rm
+            check = self.findChild(QCheckBox, "checkBox_rm")
             rm = check.checkState() is Qt.Checked
 
             findEmptyGroups(include_cascading=casc, remove=rm)
             return
 
-basic_tool = BasicCheckToolUI()
+    def __del__(self):
+        print('Me ded')
+
+    def __cleanup(self):
+        # Delete all shelf buttons
+        for b in self.shelf_buttons.values():
+            deleteUI(b)
+
+        # Delete shelf itself
+        deleteUI(self.shelf)

@@ -10,16 +10,17 @@ def maya_useNewAPI():
     """
     pass
 
-
 # Initialize the plug-in
 def initializePlugin(plugin):
-    print "Hai"
+    pluginFn = om.MFnPlugin(plugin)
 
     basic_tool = BasicCheckToolUI()
-    basic_tool.
 
+    print "Hai"
 
 
 # Uninitialize the plug-in
 def uninitializePlugin(plugin):
+    pluginFn = om.MFnPlugin(plugin)
+
     print "Bai"
