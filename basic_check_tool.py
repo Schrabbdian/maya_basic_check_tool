@@ -1,6 +1,7 @@
 from pymel.core import *
 import pymel.core.nodetypes as nt
 
+
 def findNonManifoldObjects():
     geometry_list = ls(geometry=True)  # get a list of all geometry nodes in the scene
     nm_list = []
@@ -17,6 +18,7 @@ def findNonManifoldObjects():
 
     return nm_list
 
+
 def findDefaultShaded():
 
     # select all faces that have the initial shader group assigned
@@ -25,17 +27,35 @@ def findDefaultShaded():
 
     return res
 
-def findNameDuplicates(node):
-    assert isinstance(node, nt.DependNode)
-    node = nt.DependNode(node)
-    name = node.getName()
 
-    same_name_list = ls(name)
+def findNameDuplicates(use_selection=False):
+    if use_selection:
+        sel = selected()
+        if sel:
+            node = sel[0]
 
-    select(same_name_list)
-    return same_name_list
+            assert isinstance(node, nt.DagNode)
+            name = node.getName()
 
-def findEmptyGroups(include_cascading = True, remove=False):
+            same_name_list = ls(name)
+
+            select(same_name_list)
+            return same_name_list
+
+    else:
+        node_list = ls(type=nt.DagNode)  # get a list of all DAG nodes
+
+        def isNotUniquelyNamed(node):
+            assert isinstance(node, nt.DagNode)
+            return not node.isUniquelyNamed()
+
+        # filter so that only those without unique names remain
+        node_list = filter(isNotUniquelyNamed, node_list)
+        select(node_list)
+        return node_list
+
+
+def findEmptyGroups(include_cascading=True, remove=False):
 
     # Helper function that decides whether a Transform node is a group or not
     def isGroup(node):
