@@ -201,8 +201,6 @@ class ShowToolWindow(om.MPxCommand):
 # Plug-in initialization
 ##########################################################
 
-basic_tool = None
-
 def maya_useNewAPI():
     """
     The presence of this function tells Maya that the plugin produces, and
@@ -227,6 +225,7 @@ def initializePlugin(plugin):
 
     # Create Shelf
     setup_shelf("BasicCheckTool")
+    cmds.pluginInfo("check_tool_plugin.py", edit=True, autoload=True) # turn on auto-load by default
 
     print "Loaded Basic Check Tool plugin."
 

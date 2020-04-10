@@ -1,6 +1,4 @@
 # Functionality Imports
-import sys
-sys.path.append('F:/Development/Maya/Playerium_tests/basic_check_tool') # TEMPORARY
 from basic_check_tool import *
 
 
@@ -9,13 +7,13 @@ from PySide2.QtCore import *
 from PySide2.QtUiTools import *
 from PySide2.QtWidgets import *
 
-from shiboken2 import wrapInstance
-import maya.OpenMayaUI as omui
-from functools import partial
-
 from maya.app.general.mayaMixin import MayaQWidgetDockableMixin
 
 import pymel.core.uitypes as uit
+
+# Paths
+SCRIPT_PATH = os.path.split(__file__)[0]
+UI_PATH = os.path.normpath(SCRIPT_PATH + "/../ui/")
 
 
 class BasicCheckToolUI(MayaQWidgetDockableMixin, QDialog):
@@ -32,7 +30,8 @@ class BasicCheckToolUI(MayaQWidgetDockableMixin, QDialog):
 
     def __load_ui_file(self, main_layout):
         loader = QUiLoader()
-        ui_file = QFile("F:/Development/Maya/Playerium_tests/basic_check_tool/check_tool.ui")
+
+        ui_file = QFile(UI_PATH + "/check_tool.ui")
         ui_file.open(QFile.ReadOnly)
         ui = loader.load(ui_file, parentWidget=self)
         ui_file.close()
@@ -84,10 +83,12 @@ class BasicCheckToolUI(MayaQWidgetDockableMixin, QDialog):
 
 # Shelf Management
 def setup_shelf(name="Basic_Checks"):
-
     # Do nothing if the shelf already exists
     if shelfLayout(name, ex=True):
         return
+
+    plugin_loaded_cmd = "if not maya.cmds.pluginInfo('check_tool_plugin.py', q=True, loaded=True): " \
+                        "maya.cmds.loadPlugin('check_tool_plugin.py');\n"
 
     # Create a new shelf in the Maya main window
     main_window_shelf = mel.eval("global string $gShelfTopLevel;$tmp_1=$gShelfTopLevel;")
@@ -95,26 +96,26 @@ def setup_shelf(name="Basic_Checks"):
 
     # Add Buttons to the shelf for each function
     b1 = uit.ShelfButton(shelfButton(parent=shelf))
-    b1.setCommand("maya.cmds.findNonManifoldObjects(selectObjects=True)")
-    b1.setDoubleClickCommand("maya.cmds.showBasicCheckWindow(toolIndex=0)")
+    b1.setCommand(plugin_loaded_cmd + "maya.cmds.findNonManifoldObjects(selectObjects=True)")
+    b1.setDoubleClickCommand(plugin_loaded_cmd + "maya.cmds.showBasicCheckWindow(toolIndex=0)")
     b1.setAnnotation("Find all objects with non-manifold geometry in the scene.")
     b1.setImage("load.png")
 
     b2 = uit.ShelfButton(shelfButton(parent=shelf))
-    b2.setCommand("maya.cmds.findDefaultShaded(selectObjects=True)")
-    b2.setDoubleClickCommand("maya.cmds.showBasicCheckWindow(toolIndex=1)")
+    b2.setCommand(plugin_loaded_cmd + "maya.cmds.findDefaultShaded(selectObjects=True)")
+    b2.setDoubleClickCommand(plugin_loaded_cmd + "maya.cmds.showBasicCheckWindow(toolIndex=1)")
     b2.setAnnotation("Find all objects using the default material in the scene.")
     b2.setImage("undo.png")
 
     b3 = uit.ShelfButton(shelfButton(parent=shelf))
-    b3.setCommand("maya.cmds.findNameDuplicates(useSelection=False)")
-    b3.setDoubleClickCommand("maya.cmds.showBasicCheckWindow(toolIndex=2)")
+    b3.setCommand(plugin_loaded_cmd + "maya.cmds.findNameDuplicates(useSelection=False)")
+    b3.setDoubleClickCommand(plugin_loaded_cmd + "maya.cmds.showBasicCheckWindow(toolIndex=2)")
     b3.setAnnotation("Find all objects that have the same name in the scene.")
     b3.setImage("back.png")
 
     b4 = uit.ShelfButton(shelfButton(parent=shelf))
-    b4.setCommand("maya.cmds.findEmptyGroups(includeCascading=True, remove=True)")
-    b4.setDoubleClickCommand("maya.cmds.showBasicCheckWindow(toolIndex=3)")
+    b4.setCommand(plugin_loaded_cmd + "maya.cmds.findEmptyGroups(includeCascading=True, remove=True)")
+    b4.setDoubleClickCommand(plugin_loaded_cmd + "maya.cmds.showBasicCheckWindow(toolIndex=3)")
     b4.setAnnotation("Find all empty groups in the scene.")
     b4.setImage("redo.png")
 
