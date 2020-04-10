@@ -4,7 +4,6 @@
     <list default="true" id="811773b3-53e4-4878-aea0-272138826b01" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/basic_check_tool.py" beforeDir="false" afterPath="$PROJECT_DIR$/basic_check_tool.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/check_tool_plugin.py" beforeDir="false" afterPath="$PROJECT_DIR$/check_tool_plugin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testqt.ui" beforeDir="false" afterPath="$PROJECT_DIR$/testqt.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tool_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/tool_window.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,8 +17,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/basic_check_tool.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="123" selection-start-line="123" selection-end-line="123" />
+            <state relative-caret-position="323">
+              <caret line="122" selection-start-line="122" selection-end-line="122" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
                 <element signature="e#94#517#0" />
@@ -36,27 +35,44 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/check_tool_plugin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+            <state relative-caret-position="207">
+              <caret line="163" column="19" lean-forward="true" selection-start-line="163" selection-start-column="19" selection-end-line="163" selection-end-column="19" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#267#1256#0" />
+                <element signature="e#1330#2349#0" />
+                <element signature="e#1719#2031#0" />
+                <element signature="e#2081#2156#0" />
+                <element signature="e#2209#2349#0" />
+                <element signature="e#2425#3455#0" />
+                <element signature="e#2819#3131#0" />
+                <element signature="e#3181#3258#0" />
+                <element signature="e#3311#3455#0" />
+                <element signature="e#3514#5059#0" />
+                <element signature="e#96#264#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tool_window.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="114" column="21" selection-start-line="114" selection-start-column="21" selection-end-line="114" selection-end-column="21" />
+            <state relative-caret-position="298">
+              <caret line="30" column="47" lean-forward="true" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
               <folding>
                 <element signature="e#920#1309#0" />
+                <element signature="e#2905#2976#0" />
                 <element signature="e#3025#3957#0" />
-                <element signature="e#4133#4261#0" />
+                <element signature="e#3134#3177#0" />
+                <element signature="e#3230#3406#0" />
+                <element signature="e#3465#3598#0" />
+                <element signature="e#3660#3957#0" />
+                <element signature="e#2648#3832#0" />
+                <element signature="e#3947#4038#0" />
               </folding>
             </state>
           </provider>
@@ -79,8 +95,8 @@
       <list>
         <option value="$PROJECT_DIR$/plugin.py" />
         <option value="$PROJECT_DIR$/basic_check_tool.py" />
-        <option value="$PROJECT_DIR$/check_tool_plugin.py" />
         <option value="$PROJECT_DIR$/tool_window.py" />
+        <option value="$PROJECT_DIR$/check_tool_plugin.py" />
       </list>
     </option>
   </component>
@@ -127,7 +143,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="MayaCharm.GUI">
+  <component name="RunManager" selected="MayaCharm.BasicCheckTool">
     <configuration name="BasicCheckTool" type="MAYACHARM_RUN_CONFIGURATION" factoryName="MayaCharm Configuration Factory">
       <option name="mayaSdkPath" value="F:\Programs\Maya 2020\Maya2020\bin\mayapy.exe" />
       <option name="scriptFilePath" value="F:\Development\Maya\Playerium_tests\basic_check_tool\basic_check_tool.py" />
@@ -158,7 +174,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -166,7 +181,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3290461" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39978564" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39978564" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -184,9 +199,19 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/tool_window.py</url>
-          <line>80</line>
-          <option name="timeStamp" value="12" />
+          <url>file://$PROJECT_DIR$/check_tool_plugin.py</url>
+          <line>23</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/check_tool_plugin.py</url>
+          <line>150</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/check_tool_plugin.py</url>
+          <line>175</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -208,10 +233,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tool_window.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="30" column="47" lean-forward="true" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
+          <folding>
+            <element signature="e#920#1309#0" />
+            <element signature="e#2905#2976#0" />
+            <element signature="e#3025#3957#0" />
+            <element signature="e#3134#3177#0" />
+            <element signature="e#3230#3406#0" />
+            <element signature="e#3465#3598#0" />
+            <element signature="e#3660#3957#0" />
+            <element signature="e#2648#3832#0" />
+            <element signature="e#3947#4038#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/basic_check_tool.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="123" selection-start-line="123" selection-end-line="123" />
+        <state relative-caret-position="323">
+          <caret line="122" selection-start-line="122" selection-end-line="122" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
             <element signature="e#94#517#0" />
@@ -229,22 +272,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/check_tool_plugin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+        <state relative-caret-position="207">
+          <caret line="163" column="19" lean-forward="true" selection-start-line="163" selection-start-column="19" selection-end-line="163" selection-end-column="19" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tool_window.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="114" column="21" selection-start-line="114" selection-start-column="21" selection-end-line="114" selection-end-column="21" />
-          <folding>
-            <element signature="e#920#1309#0" />
-            <element signature="e#3025#3957#0" />
-            <element signature="e#4133#4261#0" />
+            <element signature="e#267#1256#0" />
+            <element signature="e#1330#2349#0" />
+            <element signature="e#1719#2031#0" />
+            <element signature="e#2081#2156#0" />
+            <element signature="e#2209#2349#0" />
+            <element signature="e#2425#3455#0" />
+            <element signature="e#2819#3131#0" />
+            <element signature="e#3181#3258#0" />
+            <element signature="e#3311#3455#0" />
+            <element signature="e#3514#5059#0" />
+            <element signature="e#96#264#0" />
           </folding>
         </state>
       </provider>

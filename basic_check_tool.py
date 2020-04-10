@@ -120,4 +120,3 @@ def findEmptyGroups(include_cascading=True, remove=False):
         delete(group_list)
 
     return group_list
-
