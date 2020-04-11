@@ -13,8 +13,8 @@ def displayAlert(alert_info, log=True):
 
 def findNonManifoldObjects(select_objects=True):
     # Print what the function is doing
-    if select_objects: displayInfo("Finding Objects with non-manifold edges or vertices...")
-    else: displayInfo("Finding non-manifold geometry (vertices and edges)...")
+    if select_objects: displayInfo("Finding objects with non-manifold geometry...")
+    else: displayInfo("Finding non-manifold vertices and edges...")
 
 
     geometry_list = ls(geometry=True)  # get a list of all geometry nodes in the scene
@@ -34,7 +34,7 @@ def findNonManifoldObjects(select_objects=True):
     # Print Result
     if nm_list: print "Found: ", nm_list
     elif select_objects: displayAlert("No objects with non-manifold geometry in the scene!")
-    else: displayAlert("No non-manifold geometry in the scene!")
+    else: displayAlert("No non-manifold edges or vertices in the scene!")
 
 
     select(nm_list)  # select the resulting list
@@ -85,7 +85,7 @@ def findNameDuplicates(use_selection=False):
 
             assert isinstance(node, nt.DagNode)
             name = node.getName()
-            displayInfo("Finding Objects called (%s)..." % name)  # Show what the function is doing
+            displayInfo("Finding objects called %s..." % name)  # Show what the function is doing
 
             same_name_list = ls(name)
 
@@ -93,13 +93,13 @@ def findNameDuplicates(use_selection=False):
 
             # Print Result
             if len(same_name_list) > 1: print "Found: ", same_name_list
-            else: displayAlert("No other objects in the scene have the name %s!" % name)
+            else: displayAlert("No other objects in the scene are called %s!" % name)
 
             return same_name_list
 
     # Look for objects whose names occur more than once
     else:
-        displayInfo("Finding Objects with duplicate names in the scene...")  # Show what the function is doing
+        displayInfo("Finding objects with duplicate names...")  # Show what the function is doing
         node_list = ls(type=nt.DagNode)  # get a list of all DAG nodes
 
         def isNotUniquelyNamed(node):
@@ -112,7 +112,7 @@ def findNameDuplicates(use_selection=False):
 
         # Print Result
         if node_list: print "Found: ", node_list
-        else: displayAlert("All objects in the scene are uniquely named!")
+        else: displayAlert("All objects are uniquely named.")
         return node_list
 
 
@@ -160,11 +160,11 @@ def findEmptyGroups(include_cascading=True, remove=False):
 
     # delete the empty groups if specified
     if remove and group_list:
-        print "Removed the following empty groups:\n%s" % group_list
+        print "Removed empty groups:\n%s" % group_list
         delete(group_list)
     elif group_list:
         print "Found empty groups:\n%s" % group_list
     else:
-        displayAlert("Found no empty groups in the scene!")
+        displayAlert("No empty groups were found!")
 
     return group_list
