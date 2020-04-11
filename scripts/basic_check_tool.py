@@ -2,10 +2,20 @@ from pymel.core import *
 import pymel.core.nodetypes as nt
 
 
+def displayInfo(info, log=True):
+    inViewMessage(msg=info, f=True, fst=2500, pos="topLeft")  # display in-view message
+    if log: print info
+
+def displayAlert(alert_info, log=True):
+    inViewMessage(msg="<span style=\"color:#F4FA58;\">" + alert_info + "</span>", f=True, fst=2500, pos="topLeft")
+    if log: print alert_info
+
+
 def findNonManifoldObjects(select_objects=True):
     # Print what the function is doing
-    if select_objects: print "Finding Objects with non-manifold edges or vertices..."
-    else: print "Finding non-manifold geometry (vertices and edges)..."
+    if select_objects: displayInfo("Finding Objects with non-manifold edges or vertices...")
+    else: displayInfo("Finding non-manifold geometry (vertices and edges)...")
+
 
     geometry_list = ls(geometry=True)  # get a list of all geometry nodes in the scene
     nm_list = []
@@ -23,8 +33,9 @@ def findNonManifoldObjects(select_objects=True):
 
     # Print Result
     if nm_list: print "Found: ", nm_list
-    elif select_objects: print "No objects with non-manifold in the scene!"
-    else: print "No non-manifold geometry in the scene!"
+    elif select_objects: displayAlert("No objects with non-manifold geometry in the scene!")
+    else: displayAlert("No non-manifold geometry in the scene!")
+
 
     select(nm_list)  # select the resulting list
 
@@ -33,8 +44,8 @@ def findNonManifoldObjects(select_objects=True):
 
 def findDefaultShaded(select_objects=True):
     # Print what the function is doing
-    if select_objects: print "Finding Objects that use the default shader..."
-    else: print "Finding mesh faces that have the default shader assigned..."
+    if select_objects: displayInfo("Finding Objects that use the default shader...")
+    else: info = displayInfo("Finding mesh faces that have the default shader assigned...")
 
     # select all faces that have the initial shader group assigned
     hyperShade(objects='initialShadingGroup')
@@ -57,8 +68,8 @@ def findDefaultShaded(select_objects=True):
 
     # Print Result
     if result: print "Found: ", result
-    elif select_objects: print "No objects in the scene use the default shader!"
-    else: print "No mesh faces in the scene have the default shader assigned!"
+    elif select_objects: displayAlert("No objects in the scene use the default shader!")
+    else: displayAlert("No mesh faces in the scene have the default shader assigned!")
 
     select(result)
     return result
@@ -74,7 +85,7 @@ def findNameDuplicates(use_selection=False):
 
             assert isinstance(node, nt.DagNode)
             name = node.getName()
-            print "Finding Objects share a name with your selection (%s)..." % name  # Print what the function is doing
+            displayInfo("Finding Objects called (%s)..." % name)  # Show what the function is doing
 
             same_name_list = ls(name)
 
@@ -82,13 +93,13 @@ def findNameDuplicates(use_selection=False):
 
             # Print Result
             if len(same_name_list) > 1: print "Found: ", same_name_list
-            else: "No other objects in the scene have the name %s!" % name
+            else: displayAlert("No other objects in the scene have the name %s!" % name)
 
             return same_name_list
 
     # Look for objects whose names occur more than once
     else:
-        print "Finding Objects with duplicate names in the scene..."  # Print what the function is doing
+        displayInfo("Finding Objects with duplicate names in the scene...")  # Show what the function is doing
         node_list = ls(type=nt.DagNode)  # get a list of all DAG nodes
 
         def isNotUniquelyNamed(node):
@@ -101,14 +112,14 @@ def findNameDuplicates(use_selection=False):
 
         # Print Result
         if node_list: print "Found: ", node_list
-        else: "All objects in the scene are uniquely named!"
+        else: displayAlert("All objects in the scene are uniquely named!")
         return node_list
 
 
 def findEmptyGroups(include_cascading=True, remove=False):
     # Print what the function is doing
-    if remove: print "Removing empty groups..."
-    else: print "Finding empty groups..."
+    if remove: displayInfo("Removing empty groups...")
+    else: displayInfo("Finding empty groups...")
 
     # Helper function that decides whether a Transform node is a group or not
     def isGroup(node):
@@ -154,6 +165,6 @@ def findEmptyGroups(include_cascading=True, remove=False):
     elif group_list:
         print "Found empty groups:\n%s" % group_list
     else:
-        print "Found no empty groups in the scene!"
+        displayAlert("Found no empty groups in the scene!")
 
     return group_list
