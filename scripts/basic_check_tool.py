@@ -3,6 +3,10 @@ import pymel.core.nodetypes as nt
 
 
 def findNonManifoldObjects(select_objects=True):
+    # Print what the function is doing
+    if select_objects: print "Finding Objects with non-manifold edges or vertices..."
+    else: print "Finding non-manifold geometry (vertices and edges)..."
+
     geometry_list = ls(geometry=True)  # get a list of all geometry nodes in the scene
     nm_list = []
 
@@ -17,12 +21,20 @@ def findNonManifoldObjects(select_objects=True):
             else:
                 nm_list.extend(nm_geom)  # select the actual geometry
 
+    # Print Result
+    if nm_list: print "Found: ", nm_list
+    elif select_objects: print "No objects with non-manifold in the scene!"
+    else: print "No non-manifold geometry in the scene!"
+
     select(nm_list)  # select the resulting list
 
     return nm_list
 
 
 def findDefaultShaded(select_objects=True):
+    # Print what the function is doing
+    if select_objects: print "Finding Objects that use the default shader..."
+    else: print "Finding mesh faces that have the default shader assigned..."
 
     # select all faces that have the initial shader group assigned
     hyperShade(objects='initialShadingGroup')
@@ -43,11 +55,17 @@ def findDefaultShaded(select_objects=True):
 
         result = object_list
 
+    # Print Result
+    if result: print "Found: ", result
+    elif select_objects: print "No objects in the scene use the default shader!"
+    else: print "No mesh faces in the scene have the default shader assigned!"
+
     select(result)
     return result
 
 
 def findNameDuplicates(use_selection=False):
+
     # Look for Objects with the same name as the selection
     if use_selection:
         sel = selected()
@@ -56,14 +74,21 @@ def findNameDuplicates(use_selection=False):
 
             assert isinstance(node, nt.DagNode)
             name = node.getName()
+            print "Finding Objects share a name with your selection (%s)..." % name  # Print what the function is doing
 
             same_name_list = ls(name)
 
             select(same_name_list)
+
+            # Print Result
+            if len(same_name_list) > 1: print "Found: ", same_name_list
+            else: "No other objects in the scene have the name %s!" % name
+
             return same_name_list
 
     # Look for objects whose names occur more than once
     else:
+        print "Finding Objects with duplicate names in the scene..."  # Print what the function is doing
         node_list = ls(type=nt.DagNode)  # get a list of all DAG nodes
 
         def isNotUniquelyNamed(node):
@@ -73,10 +98,17 @@ def findNameDuplicates(use_selection=False):
         # filter so that only those without unique names remain
         node_list = filter(isNotUniquelyNamed, node_list)
         select(node_list)
+
+        # Print Result
+        if node_list: print "Found: ", node_list
+        else: "All objects in the scene are uniquely named!"
         return node_list
 
 
 def findEmptyGroups(include_cascading=True, remove=False):
+    # Print what the function is doing
+    if remove: print "Removing empty groups..."
+    else: print "Finding empty groups..."
 
     # Helper function that decides whether a Transform node is a group or not
     def isGroup(node):
@@ -116,7 +148,12 @@ def findEmptyGroups(include_cascading=True, remove=False):
     select(group_list)
 
     # delete the empty groups if specified
-    if remove:
+    if remove and group_list:
+        print "Removed the following empty groups:\n%s" % group_list
         delete(group_list)
+    elif group_list:
+        print "Found empty groups:\n%s" % group_list
+    else:
+        print "Found no empty groups in the scene!"
 
     return group_list

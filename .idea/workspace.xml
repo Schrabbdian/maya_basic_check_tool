@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="811773b3-53e4-4878-aea0-272138826b01" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/basic_check_tool.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/basic_check_tool.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basic_check_tool.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/check_tool.ui" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/check_tool_plugin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testqt.ui" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tool_window.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/basic_check_tool.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/basic_check_tool.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/tool_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/tool_window.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,8 +33,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/tool_window.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="90" column="73" selection-start-line="90" selection-start-column="73" selection-end-line="90" selection-end-column="73" />
+            <state relative-caret-position="391">
+              <caret line="101" column="30" selection-start-line="101" selection-start-column="30" selection-end-line="101" selection-end-column="30" />
               <folding>
                 <element signature="e#25#55#0" expanded="true" />
               </folding>
@@ -50,7 +45,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/basic_check_tool.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-561">
+            <state relative-caret-position="715">
+              <caret line="155" column="9" lean-forward="true" selection-start-line="155" selection-start-column="9" selection-end-line="155" selection-end-column="9" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -78,11 +74,12 @@
         <option value="$PROJECT_DIR$/tool_window.py" />
         <option value="$PROJECT_DIR$/check_tool_plugin.py" />
         <option value="$PROJECT_DIR$/plug-ins/check_tool_plugin.py" />
+        <option value="$PROJECT_DIR$/scripts/basic_check_tool.py" />
         <option value="$PROJECT_DIR$/scripts/tool_window.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1170" />
     <option name="y" value="129" />
     <option name="width" value="719" />
@@ -232,15 +229,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/basic_check_tool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-561">
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/plug-ins/check_tool_plugin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="562">
@@ -256,10 +244,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/basic_check_tool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="715">
+          <caret line="155" column="9" lean-forward="true" selection-start-line="155" selection-start-column="9" selection-end-line="155" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/tool_window.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="90" column="73" selection-start-line="90" selection-start-column="73" selection-end-line="90" selection-end-column="73" />
+        <state relative-caret-position="391">
+          <caret line="101" column="30" selection-start-line="101" selection-start-column="30" selection-end-line="101" selection-end-column="30" />
           <folding>
             <element signature="e#25#55#0" expanded="true" />
           </folding>

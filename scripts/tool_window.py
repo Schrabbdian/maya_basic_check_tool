@@ -99,25 +99,25 @@ def setup_shelf(name="Basic_Checks"):
     b1.setCommand(plugin_loaded_cmd + "maya.cmds.findNonManifoldObjects(selectObjects=True)")
     b1.setDoubleClickCommand(plugin_loaded_cmd + "maya.cmds.showBasicCheckWindow(toolIndex=0)")
     b1.setAnnotation("Find all objects with non-manifold geometry in the scene.")
-    b1.setImage("load.png")
+    b1.setImage("icon_geometry.png")
 
     b2 = uit.ShelfButton(shelfButton(parent=shelf))
     b2.setCommand(plugin_loaded_cmd + "maya.cmds.findDefaultShaded(selectObjects=True)")
     b2.setDoubleClickCommand(plugin_loaded_cmd + "maya.cmds.showBasicCheckWindow(toolIndex=1)")
     b2.setAnnotation("Find all objects using the default material in the scene.")
-    b2.setImage("undo.png")
+    b2.setImage("icon_shader.png")
 
     b3 = uit.ShelfButton(shelfButton(parent=shelf))
     b3.setCommand(plugin_loaded_cmd + "maya.cmds.findNameDuplicates(useSelection=False)")
     b3.setDoubleClickCommand(plugin_loaded_cmd + "maya.cmds.showBasicCheckWindow(toolIndex=2)")
     b3.setAnnotation("Find all objects that have the same name in the scene.")
-    b3.setImage("back.png")
+    b3.setImage("icon_names.png")
 
     b4 = uit.ShelfButton(shelfButton(parent=shelf))
     b4.setCommand(plugin_loaded_cmd + "maya.cmds.findEmptyGroups(includeCascading=True, remove=True)")
     b4.setDoubleClickCommand(plugin_loaded_cmd + "maya.cmds.showBasicCheckWindow(toolIndex=3)")
-    b4.setAnnotation("Find all empty groups in the scene.")
-    b4.setImage("redo.png")
+    b4.setAnnotation("Remove all empty groups in the scene.")
+    b4.setImage("icon_groups.png")
 
 
 def delete_shelf(name="Basic_Checks"):
